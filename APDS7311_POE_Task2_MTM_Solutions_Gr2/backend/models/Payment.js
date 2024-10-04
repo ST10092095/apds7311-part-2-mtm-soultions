@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const paymentSchema = new mongoose.Schema({
   customer: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "Customer",
     required: true,
     trim: true,
@@ -23,7 +23,7 @@ const paymentSchema = new mongoose.Schema({
   provider: {
     type: String,
     required: true,
-    enum: ["Provider1", "Provider2", "Provider3"], // Define available payment providers
+    enum: ["FNB", "Capitec", "Netbank"], // Define available payment providers
     match: [/^[a-zA-Z0-9\s]+$/, "Invalid provider name"], // Alphanumeric provider name (allows spaces)
   },
   recipientAccount: {
