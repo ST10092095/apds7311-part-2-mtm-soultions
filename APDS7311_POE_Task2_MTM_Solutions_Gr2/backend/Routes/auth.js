@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Customer from "../models/Customer.js";
 import loginAttemptLogger from "../middleware/loginAttemptLogMiddleware.js";
+import bruteForce from "../middleware/bruteForceProtectionMiddleware.js";
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -45,7 +46,7 @@ router.post("/register", async (req, res) => {
 });
 
 //login
-router.post("/login", loginAttemptLogger, async (req, res) => {
+router.post("/login", bruteForce.prevent, loginAttemptLogger, async (req, res) => {
     try {
         const { username, password } = req.body;
 
