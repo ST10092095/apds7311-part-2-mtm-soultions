@@ -64,7 +64,7 @@ router.post("/login", bruteForce.prevent, loginAttemptLogger, async (req, res) =
 
         //create a JWT token
         const token = jwt.sign({ id: customer._id }, JWT_SECRET, { expiresIn: "1h" });
-        res.json({ token });
+        res.json({token});
 
     } catch (err) {
         res.status(500).json({ message: "Internal server error", error: err.message });

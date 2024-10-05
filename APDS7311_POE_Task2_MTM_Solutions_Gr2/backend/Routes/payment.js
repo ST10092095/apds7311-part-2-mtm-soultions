@@ -19,12 +19,12 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 })
 
-//make payment
+//create payment
 router.post("/", authMiddleware, async (req, res) => {
   const { customer, amount, currency, provider, swiftCode, recipientAccount } = req.body;
 
   if (!amount || !currency || !provider || !swiftCode|| !recipientAccount) {
-    return res.status(400).json({ message: "Please make sure to fill required all fields" });
+    return res.status(400).json({ message: "Please make sure to fill all required fields" });
   }
   //creating the new payment for customer 
   const newPayment = new Payment({
@@ -46,7 +46,7 @@ router.post("/", authMiddleware, async (req, res) => {
    
 })
 //get payment by id
-router.get("/:id", authMiddleware, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const payment = await Payment.findById(req.params.id);
     if (!payment) {
@@ -59,6 +59,7 @@ router.get("/:id", authMiddleware, async (req, res) => {
     res.status(500).json({ message: "Internal server error", error: err.message });
   }
 })
+
 //update payment by id
 router.put("/:id", authMiddleware, async (req, res) => {
   const{customer, amount, currency, provider, recipientAccount} = req.body;
@@ -67,7 +68,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
   if (!amount && !currency && !provider && !recipientAccount) {
     return res
     .status(400)
-    .json({ message: "PLease ensure that there are fields to update" });
+    .json({ message: "Please ensure that there are fields to update" });
   }
   const updatedFields = {};
   if (amount) updatedFields.amount = amount;
@@ -92,6 +93,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 })
+
 //delete payment by id
 router.delete("/:id",authMiddleware, async (req, res) => {
   try {

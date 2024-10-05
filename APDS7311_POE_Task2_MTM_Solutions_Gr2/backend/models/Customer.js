@@ -30,8 +30,8 @@ const customerSchema = new mongoose.Schema({
     unique: true,
     trim: true,
     match: [
-      /^{[A-Za-z0-9_]+$/,
-      "Only aphanumeric characters and underscores are allowed",
+      /^[a-zA-Z0-9]{3,16}$/,
+      "Username must be between 3 and 16 characters long and contain only letters, numbers and underscores",
     ],
   },
 
