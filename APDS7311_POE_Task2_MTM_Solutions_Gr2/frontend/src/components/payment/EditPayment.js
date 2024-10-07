@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import './payment.css';
 
 function EditPayment() {
     const { id } = useParams();
@@ -67,24 +65,30 @@ function EditPayment() {
         }
     }
     return (
-        <div>
-            <h1>Edit Payment</h1>
+        <div className="container">
+            <h1 className="title">Edit Payment</h1>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <div>
-                <form>
-                    <label>Customer: </label>
-                    <input 
-                    type="text" 
-                    value={payments.customer} 
-                    onChange={(e) => setPayments({...payments, customer: e.target.value })} />
+                <form className="form">
+                    
+                    <label className="label">Customer: </label>
+                    <div className="input">
+                        <input 
+                        type="text" 
+                        value={payments.customer} 
+                        onChange={(e) => setPayments({...payments, customer: e.target.value })} />
+                    </div>
+                    
+                    <label className="label">Amount: </label>
+                    <div className="input">
+                        <input 
+                        type="text" 
+                        value={payments.amount} 
+                        onChange={(e) => setPayments({...payments, amount: e.target.value })} />
+                    </div>
 
-                    <label>Amount: </label>
-                    <input 
-                    type="text" 
-                    value={payments.amount} 
-                    onChange={(e) => setPayments({...payments, amount: e.target.value })} />
-                    <div>
-                        <label>Currency</label>
+                    <div className="dropdown">
+                        <label className="label">Currency</label>
                         <select value={payments.currency} onChange={(e) => setPayments({...payments, currency: e.target.value })}>
                             {currencies.map((currency) => (
                              <option key={currency} value={currency}>
@@ -93,8 +97,9 @@ function EditPayment() {
                             ))}
                         </select>
                     </div>
-                    <div>
-                        <label>Provider</label>
+
+                    <div className="dropdown">
+                        <label className="label">Provider</label>
                         <select value={payments.provider} onChange={(e) => setPayments({...payments, provider: e.target.value })}>
                             {providers.map((provider) => (
                              <option key={provider} value={provider}>
@@ -104,79 +109,32 @@ function EditPayment() {
                         </select>
                     </div>
 
-                    <label>Recipient Account: </label>
-                    <input 
-                    type="text" 
-                    value={payments.recipientAccount} 
-                    onChange={(e) => setPayments({...payments, recipientAccount: e.target.value })} />
-
-                    <label>Swift Code: </label> 
-                    <input
-                    type="text" 
-                    value={payments.swiftCode} 
-                    onChange={(e) => setPayments({...payments, swiftCode: e.target.value })} />
-
-                    <button 
-                    onClick={editPayment}>
-                        Save Changes</button>
-                    <button 
-                    onClick={() => navigate('/payment')}>
-                        Cancel</button>
-                </form>
-            </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <div>
-                <form>
-                    <label>Customer: </label>
-                    <input 
-                    type="text" 
-                    value={payments.customer} 
-                    onChange={(e) => setPayments({...payments, customer: e.target.value })} />
-
-                    <label>Amount: </label>
-                    <input 
-                    type="text" 
-                    value={payments.amount} 
-                    onChange={(e) => setPayments({...payments, amount: e.target.value })} />
-                    <div>
-                        <label>Currency</label>
-                        <select value={payments.currency} onChange={(e) => setPayments({...payments, currency: e.target.value })}>
-                            {currencies.map((currency) => (
-                             <option key={currency} value={currency}>
-                                {currency}
-                             </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div>
-                        <label>Provider</label>
-                        <select value={payments.provider} onChange={(e) => setPayments({...payments, provider: e.target.value })}>
-                            {providers.map((provider) => (
-                             <option key={provider} value={provider}>
-                                {provider}
-                             </option>
-                            ))}
-                        </select>
+                    <label className="label">Recipient Account: </label>
+                    <div className="input">
+                        <input 
+                        type="text" 
+                        value={payments.recipientAccount} 
+                        onChange={(e) => setPayments({...payments, recipientAccount: e.target.value })} />
                     </div>
 
-                    <label>Recipient Account: </label>
-                    <input 
-                    type="text" 
-                    value={payments.recipientAccount} 
-                    onChange={(e) => setPayments({...payments, recipientAccount: e.target.value })} />
+                    <label className="label">Swift Code: </label> 
+                    <div className="input">
+                        <input
+                          type="text" 
+                          value={payments.swiftCode} 
+                          onChange={(e) => setPayments({...payments, swiftCode: e.target.value })} />
+                    </div>
 
-                    <label>Swift Code: </label> 
-                    <input
-                    type="text" 
-                    value={payments.swiftCode} 
-                    onChange={(e) => setPayments({...payments, swiftCode: e.target.value })} />
-
-                    <button 
-                    onClick={editPayment}>
-                        Save Changes</button>
-                    <button 
-                    onClick={() => navigate('/payment')}>
-                        Cancel</button>
+                    <div className="submit container">
+                        <button className="submitbtn"
+                          onClick={editPayment}>
+                            Save Changes</button>
+                        <button className="cancelbtn"
+                          onClick={() => navigate('/payment')}>
+                            Cancel
+                        </button>
+                            
+                    </div>
                 </form>
             </div>
         </div>
