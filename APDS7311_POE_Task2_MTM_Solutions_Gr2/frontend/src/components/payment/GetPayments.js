@@ -24,7 +24,8 @@ function GetPayments() {
         }
         fetchPayments();
     }, []);
-    return <div>
+    return (
+    <div>
             <h1>Payments</h1>
             <NavLink to="/create">Create Payment</NavLink>
             {error ? <p style={{color: 'red'}}>
@@ -36,12 +37,12 @@ function GetPayments() {
                         <h3>Provider: {payment.provider}</h3>
                         <h3>Recipient Account: {payment.recipientAccount}</h3>
                         <h3>Payment Date: {new Date(payment.paymentDate).toLocaleString()}</h3>
-                        <NavLink to={`/edit/${payment.id}`}>Edit</NavLink>
-                        <NavLink to={`/delete/${payment.id}`}>Delete</NavLink>
+                        <NavLink to={`/edit/${payment._id}`}>Edit</NavLink>
+                        <NavLink to={`/delete/${payment._id}`}>Delete</NavLink>
                     </li>)}
-                </ul>: <p>Loading </p>}
+                </ul>: <p>Loading... </p>}
     </div>
-    
+    );
 };
 
 export default GetPayments;
