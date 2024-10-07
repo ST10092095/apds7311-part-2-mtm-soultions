@@ -113,9 +113,9 @@ function Register() {
         {error && <div>{error}</div>}
 
         <div className="submit-container">
-              <div className="submit">
+              <button type="submit" className="submit">
                 Register
-              </div>
+              </button>
             </div>
       </form>
         </div>
