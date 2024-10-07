@@ -52,7 +52,7 @@ function Login() {
   };
   return (
     <>
-      
+
       <div className="container">
           <div className="header">
             <div className="text">Login</div>
@@ -83,7 +83,7 @@ function Login() {
                 placeholder="Password"
               />
             </div>
-            
+
             {error && <p style={{ color: "red" }}>{error}</p>}
             <div className="submit-container">
               <div className="submit">
@@ -92,9 +92,9 @@ function Login() {
             </div>
           </form>
           </div>
-         
+
       </div>
-      
+
     </>
   );
 }
