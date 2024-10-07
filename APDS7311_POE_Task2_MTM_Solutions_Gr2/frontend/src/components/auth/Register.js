@@ -36,62 +36,89 @@ function Register() {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="container">
+      <div className="header">
+        <div className="text">Register</div>
+        <div className="underline"></div>
+      </div>
+        <div className="inputs">
+        <form onSubmit={handleSubmit}>
         <label htmlFor="fullName">Full Name</label>
-        <input
-          type="text"
-          id="fullName"
-          name="fullName"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          autoComplete="on"
-        />
+          <div className="input">
+            <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            autoComplete="on"
+            placeholder="Full Name"
+            />
+          </div>
 
-        <label htmlFor="idNumber">Id Number</label>
-        <input
-          type="text"
-          id="idNumber"
-          name="idNumber"
-          value={idNumber}
-          onChange={(e) => setIdNumber(e.target.value)}
-          autoComplete="on"
-        />
+          <label htmlFor="idNumber">Id Number</label>
+          <div className="input">
+            <input
+            type="text"
+            id="idNumber"
+            name="idNumber"
+            value={idNumber}
+            onChange={(e) => setIdNumber(e.target.value)}
+            autoComplete="on"
+            placeholder="ID Number"
+           />
+          </div>
 
-        <label htmlFor="accountNumber">Account Number</label>
-        <input
-          type="text"
-          id="accountNumber"
-          name="accountNumber"
-          value={accountNumber}
-          onChange={(e) => setAccountNumber(e.target.value)}
-          autoComplete="on"
-        />
+      
 
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          autoComplete="on"
-        />
+          <label htmlFor="accountNumber">Account Number</label>
+          <div className="input">
+            <input
+            type="text"
+            id="accountNumber"
+            name="accountNumber"
+            value={accountNumber}
+            onChange={(e) => setAccountNumber(e.target.value)}
+            autoComplete="on"
+            placeholder="Account Number"
+            />
+          </div>
+        
+          <label htmlFor="username">Username</label>
+          <div className="input">
+            <input
+            type="text"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            autoComplete="on"
+            placeholder="Username"
+            />
+          </div>
+            
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
+          <label htmlFor="password">Password</label>
+          <div className="input">
+            <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            />
+          </div>
+        
         {error && <div>{error}</div>}
 
-        <button type="submit">Register</button>
+        <div className="submit-container">
+              <button type="submit" className="submit">
+                Register
+              </button>
+            </div>
       </form>
+        </div>
     </div>
   );
 }
