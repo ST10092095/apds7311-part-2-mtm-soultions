@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './auth.css';
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -51,31 +52,49 @@ function Login() {
   };
   return (
     <>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          autoComplete="on"
-        />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        {error && <p style={{ color: "red" }}>{error}</p>}
-
-        <button type="submit">Login</button>
-      </form>
+      
+      <div className="container">
+          <div className="header">
+            <div className="text">Login</div>
+            <div className="underline"></div>
+          </div>
+          <div className="inputs">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Username:</label>
+            <div className="input">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="on"
+                placeholder="Username"
+              />
+            </div>
+            <label htmlFor="password">Password:</label>
+            <div className="input">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              />
+            </div>
+            
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <div className="submit-container">
+              <div className="submit">
+                Login
+              </div>
+            </div>
+          </form>
+          </div>
+         
+      </div>
+      
     </>
   );
 }
