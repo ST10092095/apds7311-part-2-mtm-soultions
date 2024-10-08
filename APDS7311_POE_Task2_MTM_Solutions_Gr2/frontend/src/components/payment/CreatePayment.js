@@ -133,7 +133,7 @@ function CreatePayment() {
                 <div className="submit container">
                     <button className="submitbtn"
                     type="submit">
-                        Make Payment
+                        Pay Now
                     </button>
 
                     <button className="cancelbtn" 
