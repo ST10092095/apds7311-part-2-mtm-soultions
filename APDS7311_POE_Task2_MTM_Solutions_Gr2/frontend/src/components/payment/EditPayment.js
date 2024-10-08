@@ -58,7 +58,7 @@ function EditPayment() {
                     Authorization: `Bearer ${token}`
                 }
             });
-            navigate('/payment');
+            navigate('/payment'); // should navigate to payment page
         } catch (err) {
             console.log("Error in editing of payments: ", err);
         }
