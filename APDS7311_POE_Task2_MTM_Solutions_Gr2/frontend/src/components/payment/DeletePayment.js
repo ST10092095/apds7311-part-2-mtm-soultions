@@ -22,11 +22,21 @@ function DeletePayment() {
     }
     
     return (
-        <div>
-            <h1>Delete Payments</h1>
-            <p>Are you sure you want to delete this payment?</p>
-            <button onClick={deletePayment}>Delete</button>
-            <button onClick={() => navigate(-1)}>Cancel</button>
+        <div className="container">
+            <h1 className="title">Delete Payments</h1>
+            <p className="label">Are you sure you want to delete this payment?</p>
+            <div className="submit container">
+                <button 
+                onClick={deletePayment}
+                className="cancelbtn">
+                    Delete
+                </button>
+                <button 
+                onClick={() => navigate(-1)}
+                className="submitbtn">
+                    Cancel
+                </button>
+            </div>
         </div>
     );
 }

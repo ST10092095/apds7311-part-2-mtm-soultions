@@ -65,29 +65,33 @@ function CreatePayment() {
 
     }
     return (
-        <div>
-            <h1>Create Payment</h1>
+        <div className="container">
+            <h1 className="title">Create Payment</h1>
             {error && <p style={{color: "red"}}>
                 {error}
                 </p>}
-            <form onSubmit={handleSubmit}>         
+            <form onSubmit={handleSubmit} className="form">         
 
-                <label>Customer Name</label>
-                <input 
-                  type = "string" 
-                  value={customer} 
-                  onChange={(e) => setCustomer(e.target.value)}
-                  placeholder="John Doe"/>
+                <label className="label">Customer Name</label>
+                <div className="input">
+                    <input 
+                    type = "string" 
+                    value={customer} 
+                    onChange={(e) => setCustomer(e.target.value)}
+                    placeholder="John Doe"/>
+                </div>
 
-                <label>Amount</label>
-                <input 
-                  type = "number" 
-                  value={amount} 
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="1000"/>
-                
-                <div>
-                    <label>Currency</label>
+                <label className="label">Amount</label>
+                <div className="input">
+                    <input 
+                    type = "number" 
+                    value={amount} 
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="1000"/>
+                </div>
+
+                <div className="dropdown">
+                    <label className="label">Currency</label>
                     <select value={SelectedCurrency} onChange={(e) => setSelectedCurrency(e.target.value)}>
                         {currencies.map((currency) => (
                             <option key={currency} value={currency}>
@@ -96,8 +100,9 @@ function CreatePayment() {
                         ))}
                     </select>
                 </div>
-                <div>
-                    <label>Provider</label>
+
+                <div className="dropdown">
+                    <label className="label">Provider</label>
                     <select value = {SelectedProvider} onChange={(e) => setSelectedProvider(e.target.value)}>
                         {providers.map((provider) => (
                             <option key={provider} value={provider}>
@@ -106,22 +111,36 @@ function CreatePayment() {
                         ))}
                     </select>     
                 </div>
-                <label>Account of Recipient</label>
-                <input 
-                  type = "number" 
-                  value={recipientAccount} 
-                  onChange={(e) => setRecipientAccount(e.target.value)}
-                  placeholder="0123456"/>
+
+                <label className="label">Account of Recipient</label>
+                <div className="input">
+                    <input 
+                    type = "number" 
+                    value={recipientAccount} 
+                    onChange={(e) => setRecipientAccount(e.target.value)}
+                    placeholder="0123456"/>
+                  </div>
                 
-                <label>Swift Code</label>
-                <input 
-                  type = "string" 
-                  value={swiftCode} 
-                  onChange={(e) => setSwiftCode(e.target.value)}
-                  placeholder="AAAABBCC123"/>
+                <label className="label">Swift Code</label>
+                <div className="input">
+                    <input 
+                    type = "string" 
+                    value={swiftCode} 
+                    onChange={(e) => setSwiftCode(e.target.value)}
+                    placeholder="AAAABBCC123"/>
+                </div>
                 
-                <button 
-                type="submit">Make Payment</button>
+                <div className="submit container">
+                    <button className="submitbtn"
+                    type="submit">
+                        Make Payment
+                    </button>
+
+                    <button className="cancelbtn" 
+                      onClick={() => navigate('/payment')}>
+                        Cancel
+                    </button>
+                </div>
             </form>
         </div>
     );
