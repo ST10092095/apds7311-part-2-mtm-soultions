@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import ProtectedPage from "./components/ProtectedPage";
 import Navbar from "./components/navbar";
 import GetPayments from "./components/payment/GetPayments";
 import CreatePayment from "./components/payment/CreatePayment";
@@ -23,7 +22,6 @@ function App() {
           <Route path="/create" element={<CreatePayment />} />
           <Route path="/edit/:id" element={<EditPayment />} />
           <Route path="/delete/:id" element={<DeletePayment />} />
-          <Route path="/protected" element={<ProtectedPage />} />
         </Routes>
       </div>
     </Router>

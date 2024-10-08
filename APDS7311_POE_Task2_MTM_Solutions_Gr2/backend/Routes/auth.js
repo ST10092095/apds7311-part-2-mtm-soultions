@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import Customer from "../models/Customer.js";
 import loginAttemptLogger from "../middleware/loginAttemptLogMiddleware.js";
 import bruteForce from "../middleware/bruteForceProtectionMiddleware.js";
+import validator from "validator";
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -23,6 +24,15 @@ router.post("/register", async (req, res) => {
     if (existingCustomer) {
       return res.status(400).json({ message: "Username already exists" });
     }
+
+    if (validator.isStrongPassword(password,{
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1}) === false) {
+        return res.status(400).json({ message: "Password is not strong enough" });
+      }
 
     //hash password
     const hashedPassword = await bcrypt.hash(password, 10);
