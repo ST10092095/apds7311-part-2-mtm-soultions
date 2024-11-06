@@ -14,9 +14,7 @@ const Navbar = () => {
                         <NavLink to="/login">Login</NavLink>
                     
                         <NavLink to="/payment">Payments</NavLink>
-                    
-                        <NavLink to="/protected">Protected</NavLink>
-                   
+                      
             </nav>
         </header>
         
