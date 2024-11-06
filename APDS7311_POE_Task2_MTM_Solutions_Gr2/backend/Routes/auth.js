@@ -5,9 +5,20 @@ import Customer from "../models/Customer.js";
 import loginAttemptLogger from "../middleware/loginAttemptLogMiddleware.js";
 import bruteForce from "../middleware/bruteForceProtectionMiddleware.js";
 import validator from "validator";
+import PasswordValidator from "password-validator";
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
+
+const passwordSchema = new PasswordValidator();
+passwordSchema
+  .is().min(8)                                    // Minimum length 8
+  .is().max(100)                                  // Maximum length 100
+  .has().uppercase()                              // Must have uppercase letters
+  .has().lowercase()                              // Must have lowercase letters
+  .has().digits(1)                                // Must have at least one digit
+  .has().symbols(1)                               // Must have at least one symbol
+  .has().not().spaces();
 
 //base route
 router.get("/", (req, res) => {
@@ -25,14 +36,10 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ message: "Username already exists" });
     }
 
-    if (validator.isStrongPassword(password,{
-        minLength: 8,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1}) === false) {
-        return res.status(400).json({ message: "Password is not strong enough" });
-      }
+    // Validate password strength
+    if (!passwordSchema.validate(password)) {
+      return res.status(400).json({ message: "Password is not strong enough!!" });
+    }
 
     //hash password
     const hashedPassword = await bcrypt.hash(password, 10);
