@@ -69,7 +69,7 @@ function Register() {
            />
           </div>
 
-      
+
 
           <label htmlFor="accountNumber">Account Number</label>
           <div className="input">
@@ -83,7 +83,7 @@ function Register() {
             placeholder="Account Number"
             />
           </div>
-        
+
           <label htmlFor="username">Username</label>
           <div className="input">
             <input
@@ -96,7 +96,7 @@ function Register() {
             placeholder="Username"
             />
           </div>
-            
+
 
           <label htmlFor="password">Password</label>
           <div className="input">
@@ -109,11 +109,11 @@ function Register() {
             placeholder="Password"
             />
           </div>
-        
+
         {error && <div>{error}</div>}
 
         <div className="submit-container">
-              <button type="submit" className="submit">
+              <button className="submit">
                 Register
               </button>
             </div>

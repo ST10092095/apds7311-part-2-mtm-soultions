@@ -41,7 +41,7 @@ function Login() {
         password,
       });
       localStorage.setItem("token", response.data.token);
-      navigate("/protected");
+      navigate("/payment");
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message);
@@ -52,7 +52,7 @@ function Login() {
   };
   return (
     <>
-      
+
       <div className="container">
           <div className="header">
             <div className="text">Login</div>
@@ -83,18 +83,18 @@ function Login() {
                 placeholder="Password"
               />
             </div>
-            
+
             {error && <p style={{ color: "red" }}>{error}</p>}
             <div className="submit-container">
-              <button type="submit" className="submit">
+              <button className="submit">
                 Login
               </button>
             </div>
           </form>
           </div>
-         
+
       </div>
-      
+
     </>
   );
 }

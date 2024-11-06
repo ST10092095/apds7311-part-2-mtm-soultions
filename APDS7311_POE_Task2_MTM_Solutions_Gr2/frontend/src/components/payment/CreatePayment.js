@@ -130,10 +130,10 @@ function CreatePayment() {
                     placeholder="AAAABBCC123"/>
                 </div>
                 
-                <div className="submit container">
+                <div className="submit_container">
                     <button className="submitbtn"
                     type="submit">
-                        Make Payment
+                        Pay Now
                     </button>
 
                     <button className="cancelbtn" 
