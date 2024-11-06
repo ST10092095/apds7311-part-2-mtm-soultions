@@ -41,7 +41,7 @@ function Login() {
         password,
       });
       localStorage.setItem("token", response.data.token);
-      navigate("/protected");
+      navigate("/payment");
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message);
