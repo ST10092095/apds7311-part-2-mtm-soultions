@@ -4,9 +4,21 @@ import jwt from "jsonwebtoken";
 import Customer from "../models/Customer.js";
 import loginAttemptLogger from "../middleware/loginAttemptLogMiddleware.js";
 import bruteForce from "../middleware/bruteForceProtectionMiddleware.js";
+import validator from "validator";
+import PasswordValidator from "password-validator";
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
+
+const passwordSchema = new PasswordValidator();
+passwordSchema
+  .is().min(8)                                    // Minimum length 8
+  .is().max(100)                                  // Maximum length 100
+  .has().uppercase()                              // Must have uppercase letters
+  .has().lowercase()                              // Must have lowercase letters
+  .has().digits(1)                                // Must have at least one digit
+  .has().symbols(1)                               // Must have at least one symbol
+  .has().not().spaces();
 
 //base route
 router.get("/", (req, res) => {
@@ -22,6 +34,11 @@ router.post("/register", async (req, res) => {
     const existingCustomer = await Customer.findOne({ $or: [{ username }] });
     if (existingCustomer) {
       return res.status(400).json({ message: "Username already exists" });
+    }
+
+    // Validate password strength
+    if (!passwordSchema.validate(password)) {
+      return res.status(400).json({ message: "Password is not strong enough!!" });
     }
 
     //hash password
@@ -42,6 +59,7 @@ router.post("/register", async (req, res) => {
     res
       .status(500)
       .json({ message: "Internal server error", error: err.message });
+      console.log(err);
   }
 });
 
