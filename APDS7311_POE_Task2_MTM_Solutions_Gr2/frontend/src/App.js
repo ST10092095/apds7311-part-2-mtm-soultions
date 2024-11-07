@@ -7,6 +7,7 @@ import GetPayments from "./components/payment/GetPayments";
 import CreatePayment from "./components/payment/CreatePayment";
 import EditPayment from "./components/payment/EditPayment"; 
 import DeletePayment from "./components/payment/DeletePayment";
+import TransactionVerification from "./components/transaction/TransactionVerification";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/create" element={<CreatePayment />} />
           <Route path="/edit/:id" element={<EditPayment />} />
           <Route path="/delete/:id" element={<DeletePayment />} />
+          <Route path="/transactions" element={<TransactionVerification />} />
         </Routes>
       </div>
     </Router>

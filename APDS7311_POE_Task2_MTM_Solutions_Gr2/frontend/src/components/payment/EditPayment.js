@@ -42,7 +42,8 @@ function EditPayment() {
         fetchPayments();
     }, [id]);
 
-    const editPayment = async () => {
+    const editPayment = async (e) => {
+        e.preventDefault();
         try {
             const token = localStorage.getItem('token');
             await axios.put(`/api/${id}`, {
