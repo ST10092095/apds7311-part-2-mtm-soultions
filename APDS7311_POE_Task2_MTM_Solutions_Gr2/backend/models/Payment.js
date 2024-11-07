@@ -23,7 +23,7 @@ const paymentSchema = new mongoose.Schema({
   provider: {
     type: String,
     required: true,
-    enum: ["FNB", "Capitec", "Netbank","Standard Bank","Investec", "ABSA","Bidvest Bank" ], // Define available payment providers
+    enum: ["FNB", "Capitec", "Nedbank","Standard Bank","Investec", "ABSA","Bidvest Bank" ], // Define available payment providers
     match: [/^[a-zA-Z0-9\s]+$/, "Invalid provider name"], // Alphanumeric provider name (allows spaces)
   },
   recipientAccount: {

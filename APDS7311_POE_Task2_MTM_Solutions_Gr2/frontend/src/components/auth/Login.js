@@ -7,41 +7,42 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isEmployee, setIsEmployee] = useState(false); 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    // try{
-    //     const response = await fetch('/api/auth/login', {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify({username, password})
-    //     });
-    //     const data = await response.json();
-
-    //     if (data.error) {
-    //         setError(data.error);
-    //     } else {
-    //         localStorage.setItem('token', data.token);
-    //         window.location.href = '/protected';
-    //     }
-    // } catch (error) {
-    //     if (error.response) {
-    //         setError(error.response.data.message);
-    //     } else {
-    //         setError("Something went wrong. Please try again");
-    //     }
-    // }
-    // axios function
     try {
       const response = await axios.post("/api/auth/login", {
         username,
         password,
       });
+
       localStorage.setItem("token", response.data.token);
-      navigate("/payment");
+
+      if(isEmployee) {
+        const response = await axios.post("/api/authEmployee/login", {
+          username,
+          password,
+        });
+
+        localStorage.setItem("token", response.data.token);
+
+        //navigate("/employee");
+      }
+      else{
+
+        const response = await axios.post("/api/auth/login", {
+          username,
+          password,
+        });
+
+        localStorage.setItem("token", response.data.token);
+
+        navigate("/payment");
+      }
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message);
@@ -85,6 +86,18 @@ function Login() {
             </div>
 
             {error && <p style={{ color: "red" }}>{error}</p>}
+            
+            <div className="checkbox-container">
+              <input
+                type="checkbox"
+                id="employeeCheckbox"
+                name="employeeCheckbox"
+                checked={isEmployee}
+                onChange={() => setIsEmployee(!isEmployee)}
+              />
+              <label htmlFor="employeeCheckbox">Login as Employee</label>
+            </div>
+            
             <div className="submit-container">
               <button className="submit">
                 Login
