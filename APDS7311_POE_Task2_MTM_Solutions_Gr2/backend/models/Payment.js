@@ -44,6 +44,10 @@ const paymentSchema = new mongoose.Schema({
     default: Date.now,
     imutable: true,
   },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model("Payment", paymentSchema);
