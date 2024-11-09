@@ -23,7 +23,7 @@ function App() {
           <Route path="/create" element={<CreatePayment />} />
           <Route path="/edit/:id" element={<EditPayment />} />
           <Route path="/delete/:id" element={<DeletePayment />} />
-          <Route path="/transactions" element={<TransactionVerification />} />
+          <Route path="/employee" element={<TransactionVerification />} />
         </Routes>
       </div>
     </Router>

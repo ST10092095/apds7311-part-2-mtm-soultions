@@ -31,9 +31,6 @@ function GetPayments() {
             <div>
                 <NavLink to="/create" className={"crt_btn"}>Create Payment</NavLink>
             </div>
-            <div>
-                <NavLink to="/transactions" className={"crt_btn"}>Transactions</NavLink>
-            </div>
 
             {error ? <p style={{color: 'red'}}>
                 {error}

@@ -6,10 +6,10 @@ const EmployeeSchema = new mongoose.Schema({
         required: true,
         imutable: true,
         trim: true,
-        match: [
-          /^{[A-Za-z0-9_]+$/,
-          "Only aphanumeric characters and underscores are allowed",
-        ],
+        // match: [
+        //   /^{[A-Za-z0-9_]+$/,
+        //   "Only aphanumeric characters and underscores are allowed",
+        // ],
     },
 
     fullName: {

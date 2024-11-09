@@ -10,7 +10,7 @@ function TransactionVerification() {
     // Fetch transactions on component mount
     useEffect(() => {
         fetchTransactions();
-    }, []);
+    }, [transactions]);
 
     // Function to fetch transactions with 'verified' status as false
     const fetchTransactions = async () => {
@@ -22,50 +22,69 @@ function TransactionVerification() {
                 }
             });
 
-            setTransactions(response.data.filter(transaction => transaction.verified === false));
+            setTransactions(response.data.filter(checkStatus));
+
+            function checkStatus(transaction){
+                return transaction.isVerified === false
+            }
+
         } catch (err) {
-            setError('Failed to fetch transactions');
+            console.log(err);
         }
-    };
+    }
 
     // Function to add a transaction to the selected list
-    const handleSelection = (id) => {
-        setVerifiedTransactionIds(prevIds =>
-            prevIds.includes(id) ? prevIds.filter(existingId => existingId !== id) : [...prevIds, id]
-        );
-    };
+    const handleSelection = async (id) => {
+        setVerifiedTransactionIds([
+            ...verifiedTransactionIds,
+            id,
+        ]);
+    }
 
-    // Function to submit verification updates for selected transactions
-    const handleSubmit = async (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        try {
+        const editPayments = async () => {
             const token = localStorage.getItem('token');
-            for (let i = 0; i < verifiedTransactionIds.length; i++) {
-                const transactionId = verifiedTransactionIds[i];
-                const transaction = transactions.find(t => t._id === transactionId);
-
-                await axios.put(`/api/${transactionId}`, {
-                    customer: transaction.customer,
-                    amount: transaction.amount,
-                    currency: transaction.currency,
-                    provider: transaction.provider,
-                    recipientAccount: transaction.recipientAccount,
-                    swiftCode: transaction.swiftCode,
-                    verified: true
-                },   {
+            console.log("here0")
+            console.log(verifiedTransactionIds.length.toString())
+            for(let i = 0; i < verifiedTransactionIds.length; i++)
+            {
+                console.log("here1")
+                let transaction = axios.get(`/api/${verifiedTransactionIds[i]}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-            }
+                console.log("here2")
+                axios.put(`/api/${verifiedTransactionIds[i]}`,
+                    {
+                        customer: transaction.customer,
+                        amount: transaction.amount,
+                        currency: transaction.currency,
+                        provider: transaction.provider,
+                        recipientAccount: transaction.recipientAccount,
+                        swiftCode: transaction.swiftCode,
+                        isVerified: true
+                    }, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                )
+                console.log("here3")
 
-            // Clear the verified transaction IDs and refresh transactions
-            setVerifiedTransactionIds([]);
-            fetchTransactions();
-        } catch (err) {
-            setError('Failed to verify transactions');
+            }  
         }
-    };
+        await editPayments();
+        console.log("here4")
+
+        
+        // Fetching unverified transactions
+        await fetchTransactions();
+        console.log("here5")
+
+    }
+
 
     return (
         <div className="container">
