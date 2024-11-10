@@ -42,8 +42,6 @@ function GetPayments() {
                         <h3>Recipient Account: {payment.recipientAccount}</h3>
                         <h3>Swift Code: {payment.swiftCode}</h3>
                         <h3>Payment Date: {new Date(payment.paymentDate).toLocaleString()}</h3>
-                        <NavLink to={`/edit/${payment._id}`} className = "edit_btn">Edit</NavLink>
-                        <NavLink to={`/delete/${payment._id}`} className="del_btn">Delete</NavLink>
                     </li>)}
                 </ul>: <p>Loading... </p>}
     </div>
