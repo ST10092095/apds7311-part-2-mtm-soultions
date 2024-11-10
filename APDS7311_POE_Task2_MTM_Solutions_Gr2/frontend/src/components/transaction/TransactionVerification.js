@@ -5,11 +5,14 @@ import './transaction.css';
 function TransactionVerification() {
     const [transactions, setTransactions] = useState([]);
     const [verifiedTransactionIds, setVerifiedTransactionIds] = useState([]);
+    const [banks, setBanks] = useState([]);
     const [error, setError] = useState('');
+    
 
     // Fetch transactions on component mount
     useEffect(() => {
         fetchTransactions();
+        fetchBanks();
     }, [transactions]);
 
     // Function to fetch transactions with 'verified' status as false
@@ -45,17 +48,15 @@ function TransactionVerification() {
         e.preventDefault();
         const editPayments = async () => {
             const token = localStorage.getItem('token');
-            console.log("here0")
+
             console.log(verifiedTransactionIds.length.toString())
             for(let i = 0; i < verifiedTransactionIds.length; i++)
             {
-                console.log("here1")
                 let transaction = axios.get(`/api/${verifiedTransactionIds[i]}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                console.log("here2")
                 axios.put(`/api/${verifiedTransactionIds[i]}`,
                     {
                         customer: transaction.customer,
@@ -71,25 +72,49 @@ function TransactionVerification() {
                         }
                     }
                 )
-                console.log("here3")
 
             }  
         }
         await editPayments();
-        console.log("here4")
 
         
         // Fetching unverified transactions
         await fetchTransactions();
-        console.log("here5")
 
     }
 
+    const fetchBanks = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`/api/bank`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            setBanks(response.data);
+        } catch (err) {
+            setError('Failed to fetch bank details');
+        }
+    };
+
+
 
     return (
-        <div className="container">
+        <div className="tcontainer">
             <h1 className="title">Transaction Verification</h1>
             {error && <p className="error">{error}</p>}
+            <div className="banks-container">
+                <h2>Bank SWIFT Codes</h2>
+                <ul>
+                    {banks.map((bank) => (
+                        <li key={banks._id}>
+                            <strong>{bank.BankName}</strong>: {bank.swiftCode}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
             <form onSubmit={handleSubmit}>
                 <ul>
                     {transactions.map((transaction) => (

@@ -66,7 +66,7 @@ function EditPayment() {
         }
     }
     return (
-        <div className="container">
+        <div className="paymentcontainer">
             <h1 className="title">Edit Payment</h1>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <div>
@@ -126,7 +126,7 @@ function EditPayment() {
                           onChange={(e) => setPayments({...payments, swiftCode: e.target.value })} />
                     </div>
 
-                    <div className="submit container">
+                    <div className="submit_container">
                         <button className="submitbtn"
                           onClick={editPayment}>
                             Save Changes</button>

@@ -65,7 +65,7 @@ function CreatePayment() {
 
     }
     return (
-        <div className="container">
+        <div className="paymentcontainer">
             <h1 className="title">Create Payment</h1>
             {error && <p style={{color: "red"}}>
                 {error}

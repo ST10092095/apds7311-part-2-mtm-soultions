@@ -21,7 +21,7 @@ function DeletePayment() {
   };
 
   return (
-    <div className="container">
+    <div className="paymentcontainer">
       <h1 className="title">Delete Payments</h1>
       <p className="label">Are you sure you want to delete this payment?</p>
       <div className="submit container">

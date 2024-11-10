@@ -26,7 +26,7 @@ function GetPayments() {
         fetchPayments();
     }, []);
     return (
-    <div className="container">
+    <div className="paymentcontainer">
             <h1 className="title">Payments</h1>
             <div>
                 <NavLink to="/create" className={"crt_btn"}>Create Payment</NavLink>

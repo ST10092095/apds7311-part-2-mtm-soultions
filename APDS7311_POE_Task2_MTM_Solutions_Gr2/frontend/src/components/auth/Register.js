@@ -36,7 +36,7 @@ function Register() {
   };
 
   return (
-    <div className="container">
+    <div className="authcontainer">
       <div className="header">
         <div className="text">Register</div>
         <div className="underline"></div>
