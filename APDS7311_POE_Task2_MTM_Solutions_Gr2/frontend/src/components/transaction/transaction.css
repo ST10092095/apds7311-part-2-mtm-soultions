@@ -1,0 +1,83 @@
+.tcontainer {
+    width: 90%;
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+}
+
+.error {
+    color: #e74c3c;
+    font-weight: bold;
+    text-align: center;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.transaction-details {
+    margin-left: 12px;
+    color: #34495e;
+}
+
+.transaction-details p {
+    margin: 4px 0;
+    padding: 3px 0;
+    font-size: 1em;
+}
+
+.verify-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.verify-button:hover {
+    background-color: #2980b9;
+}
+
+.banks-container {
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+}
+
+.banks-container h3 {
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    color: #2c3e50;
+}
+
+.banks-container p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #555555;
+}

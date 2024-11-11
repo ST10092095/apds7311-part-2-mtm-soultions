@@ -7,6 +7,8 @@ import heltmet from "helmet";
 import morgan from "morgan";
 import e from "express";
 import connectDB from "./db/conn.js";
+import authEmployeeRoutes from "./Routes/authEmployee.js";
+import bankRoutes from "./Routes/bank.js";
 import authRoutes from "./Routes/auth.js";
 import paymentRoutes from "./Routes/payment.js";
 
@@ -33,6 +35,8 @@ app.use(cors(corsOptions));
 
 //Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/authEmployee', authEmployeeRoutes);
+app.use('/api/bank',bankRoutes)
 app.use('/api', paymentRoutes);
 
 //SSL Certificate and Key

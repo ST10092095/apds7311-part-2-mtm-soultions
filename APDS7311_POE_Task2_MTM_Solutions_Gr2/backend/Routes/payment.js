@@ -62,10 +62,10 @@ router.get("/:id", async (req, res) => {
 
 //update payment by id
 router.put("/:id", authMiddleware, async (req, res) => {
-  const{customer, amount, currency, provider, recipientAccount, swiftCode} = req.body;
+  const{customer, amount, currency, provider, recipientAccount, swiftCode, isVerified} = req.body;
 
   //validate request
-  if (!amount && !currency && !provider && !recipientAccount) {
+  if (!isVerified) {
     return res
     .status(400)
     .json({ message: "Please ensure that there are fields to update" });
@@ -77,6 +77,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
   if (provider) updatedFields.provider = provider;
   if(swiftCode) updatedFields.swiftCode = swiftCode;
   if (recipientAccount) updatedFields.recipientAccount = recipientAccount;
+  if (isVerified) updatedFields.isVerified = isVerified;
 
   try {
     

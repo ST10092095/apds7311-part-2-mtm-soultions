@@ -129,7 +129,7 @@ function CreatePayment() {
 
     }
     return (
-        <div className="container">
+        <div className="paymentcontainer">
             <h1 className="title">Create Payment</h1>
             {error && <p style={{color: "red"}}>
                 {error}
@@ -194,7 +194,7 @@ function CreatePayment() {
                     placeholder="AAAABBCC123"/>
                 </div>
                 
-                <div className="submit container">
+                <div className="submit_container">
                     <button className="submitbtn"
                     type="submit">
                         Make Payment
